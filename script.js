@@ -65,8 +65,25 @@
         });
     });
 
-    // Form validation enhancement
+    // Show success message if redirected back after form submission
     const contactForm = document.getElementById('contactForm');
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get('submitted') === 'true' && contactForm) {
+        const successDiv = document.createElement('div');
+        successDiv.className = 'form-success-message';
+        successDiv.innerHTML = '<h3>We\'ve received your request!</h3><p>An agent will reach out to you shortly.</p>';
+        successDiv.style.cssText = 'padding: 2rem; margin-bottom: 2rem; border-radius: 8px; background-color: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; text-align: center;';
+        successDiv.querySelector('h3').style.cssText = 'margin: 0 0 0.5rem 0; font-size: 1.25rem;';
+        successDiv.querySelector('p').style.cssText = 'margin: 0; font-size: 1rem;';
+        contactForm.parentNode.insertBefore(successDiv, contactForm);
+        contactForm.style.display = 'none';
+
+        // Clean up the URL
+        window.history.replaceState({}, '', window.location.pathname + '#contact');
+    }
+
+    // Form validation enhancement
     const formInputs = contactForm?.querySelectorAll('input, select, textarea');
 
     if (formInputs) {
