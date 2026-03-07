@@ -1,6 +1,5 @@
 /**
- * Ashford & Briggs - Main JavaScript
- * Minimal, tasteful interactions for enhanced user experience
+ * Paladin Recruiter - Main JavaScript
  */
 
 (function() {
@@ -175,40 +174,6 @@
         });
     }
 
-    // Intersection Observer for fade-in animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in-up');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    // Observe elements for animation
-    const animatedElements = document.querySelectorAll(
-        '.service-card, .process-step, .value-item, .stat'
-    );
-
-    animatedElements.forEach(el => observer.observe(el));
-
-    // Add stagger effect to service cards
-    const serviceCards = document.querySelectorAll('.service-card');
-    serviceCards.forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.1}s`;
-    });
-
-    // Add stagger effect to process steps
-    const processSteps = document.querySelectorAll('.process-step');
-    processSteps.forEach((step, index) => {
-        step.style.animationDelay = `${index * 0.1}s`;
-    });
-
     // Keyboard accessibility - trap focus in mobile menu when open
     if (navMenu && mobileMenuToggle) {
         document.addEventListener('keydown', function(e) {
@@ -244,25 +209,5 @@
             }
         });
     }
-
-    // Performance: Lazy load background images if any are added
-    if ('IntersectionObserver' in window) {
-        const lazyBackgrounds = document.querySelectorAll('.lazy-background');
-
-        const backgroundObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    backgroundObserver.unobserve(entry.target);
-                }
-            });
-        });
-
-        lazyBackgrounds.forEach(bg => backgroundObserver.observe(bg));
-    }
-
-    // Console message for developers
-    console.log('%cAshford & Briggs', 'font-size: 20px; font-weight: bold; color: #1a365d;');
-    console.log('%cAligning exceptional people with exceptional companies', 'font-size: 14px; color: #64748b;');
 
 })();
