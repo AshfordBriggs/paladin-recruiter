@@ -65,88 +65,8 @@
         });
     });
 
-    // Form submission handler
-    const contactForm = document.getElementById('contactForm');
-
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value,
-                company: document.getElementById('company').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                service: document.getElementById('service').value,
-                message: document.getElementById('message').value
-            };
-
-            // Here you would normally send the data to your server
-            // For now, we'll show a success message
-            showFormMessage('success', 'Thank you for your inquiry! We\'ll be in touch within 24 hours.');
-
-            // Reset form
-            contactForm.reset();
-
-            // In production, you would do something like:
-            /*
-            fetch('/api/contact', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                showFormMessage('success', 'Thank you for your inquiry! We\'ll be in touch within 24 hours.');
-                contactForm.reset();
-            })
-            .catch(error => {
-                showFormMessage('error', 'There was an error submitting your form. Please try again or contact us directly.');
-            });
-            */
-        });
-    }
-
-    // Form message display helper
-    function showFormMessage(type, message) {
-        // Remove any existing message
-        const existingMessage = document.querySelector('.form-message');
-        if (existingMessage) {
-            existingMessage.remove();
-        }
-
-        // Create message element
-        const messageDiv = document.createElement('div');
-        messageDiv.className = `form-message form-message-${type}`;
-        messageDiv.textContent = message;
-        messageDiv.style.cssText = `
-            padding: 1rem 1.5rem;
-            margin-bottom: 1.5rem;
-            border-radius: 6px;
-            font-weight: 500;
-            background-color: ${type === 'success' ? '#d1fae5' : '#fee2e2'};
-            color: ${type === 'success' ? '#065f46' : '#991b1b'};
-            border: 1px solid ${type === 'success' ? '#6ee7b7' : '#fca5a5'};
-        `;
-
-        // Insert at top of form
-        contactForm.insertBefore(messageDiv, contactForm.firstChild);
-
-        // Scroll to message
-        messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-
-        // Remove message after 8 seconds
-        setTimeout(() => {
-            messageDiv.style.opacity = '0';
-            messageDiv.style.transition = 'opacity 0.5s ease';
-            setTimeout(() => messageDiv.remove(), 500);
-        }, 8000);
-    }
-
     // Form validation enhancement
+    const contactForm = document.getElementById('contactForm');
     const formInputs = contactForm?.querySelectorAll('input, select, textarea');
 
     if (formInputs) {
