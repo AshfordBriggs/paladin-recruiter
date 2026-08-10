@@ -329,6 +329,13 @@ a:hover { opacity: 0.85; }
     color: var(--paper-ink);
 }
 
+/* ---------- the owner's case ---------- */
+
+.owners { border-top: 1px solid var(--paper-line); }
+.owners .stat-num { font-size: 2.2rem; }
+.owners .stat-desc { margin-bottom: 1.2rem; }
+.owners .kicker strong { color: var(--blue-deep); }
+
 /* ---------- features ---------- */
 
 .features {
