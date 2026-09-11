@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="John Evans — CEO, Ashford & Briggs LLC. Founder of Paladin Recruiter, the realtime advisor for recruiting calls. Contact details and a one-tap contact card.">
+    <meta name="author" content="Ashford & Briggs">
+    <meta name="robots" content="noindex, follow">
+    <title>John Evans | CEO, Ashford &amp; Briggs — Paladin Recruiter</title>
+
+    <link rel="canonical" href="https://paladinrecruiter.com/john-evans">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://paladinrecruiter.com/john-evans">
+    <meta property="og:title" content="John Evans — CEO, Ashford &amp; Briggs">
+    <meta property="og:description" content="Founder of Paladin Recruiter, the realtime advisor for recruiting calls.">
+    <meta property="og:image" content="https://paladinrecruiter.com/assets/paladin-logo-horizontal.png">
+
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ---- bio page (business-card landing) ---- */
+        .bio { padding: 3.5rem 0 5rem; background: var(--paper); }
+        .bio-card {
+            max-width: 720px;
+            margin: 0 auto;
+            background: var(--paper-card);
+            border: 1px solid var(--paper-line);
+            border-radius: 14px;
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+        .bio-band {
+            background: var(--ink);
+            color: var(--fog);
+            padding: 2.2rem 2.2rem 1.9rem;
+            display: flex;
+            align-items: center;
+            gap: 1.4rem;
+        }
+        .bio-band img { width: 64px; height: 64px; object-fit: contain; filter: brightness(1.9) saturate(0.75); flex: none; }
+        .bio-band .eyebrow { margin-bottom: 0.4rem; color: var(--blue); }
+        .bio-band h1 { font-size: 2.1rem; font-weight: 700; margin-bottom: 0.15rem; color: #fff; }
+        .bio-band .role { font-size: 1.05rem; color: var(--fog-dim); margin: 0; }
+        .bio-band .role strong { color: var(--fog); font-weight: 500; }
+
+        .bio-body { padding: 2rem 2.2rem 2.2rem; }
+        .bio-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1.8rem; }
+        .bio-actions .btn-primary, .bio-actions .btn-outline {
+            display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+            padding: 0.95rem 1rem; border-radius: 8px; font-weight: 600; font-size: 1rem;
+            text-align: center;
+        }
+        .bio-actions .btn-outline {
+            border: 1.5px solid var(--blue-deep); color: var(--blue-deep);
+        }
+        .bio-actions .btn-outline:hover { background: rgba(10, 102, 194, 0.06); opacity: 1; }
+        .bio-actions .span2 { grid-column: 1 / -1; }
+
+        .bio-contact { list-style: none; margin: 0 0 2rem; padding: 0; border-top: 1px solid var(--paper-line); }
+        .bio-contact li {
+            display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+            padding: 0.85rem 0; border-bottom: 1px solid var(--paper-line);
+        }
+        .bio-contact .k {
+            font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.2em;
+            text-transform: uppercase; color: var(--paper-dim); flex: none;
+        }
+        .bio-contact .v { font-size: 1.05rem; font-weight: 500; text-align: right; word-break: break-word; }
+
+        .bio-text p { color: var(--paper-dim); }
+        .bio-text p.lead { color: var(--paper-ink); font-size: 1.15rem; font-weight: 500; }
+        .bio-text p:last-child { margin-bottom: 0; }
+
+        .bio-foot { margin-top: 1.8rem; padding-top: 1.4rem; border-top: 1px solid var(--paper-line); font-size: 0.9rem; color: var(--paper-dim); }
+        .bio-foot p { margin: 0; }
+
+        @media (max-width: 600px) {
+            .bio { padding: 1.5rem 0 3rem; }
+            .bio-card { border-radius: 10px; }
+            .bio-band { padding: 1.7rem 1.4rem 1.5rem; gap: 1rem; }
+            .bio-band img { width: 52px; height: 52px; }
+            .bio-band h1 { font-size: 1.7rem; }
+            .bio-body { padding: 1.5rem 1.4rem 1.7rem; }
+            .bio-actions { grid-template-columns: 1fr; }
+            .bio-contact li { flex-direction: column; align-items: flex-start; gap: 0.2rem; }
+            .bio-contact .v { text-align: left; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <nav class="container nav-container">
+            <a href="/" class="logo">
+                <img src="assets/paladin-icon.png" alt="Paladin helmet mark" class="logo-mark">
+                <span class="logo-text">
+                    <span class="logo-name">Paladin</span>
+                    <span class="logo-subtitle">Realtime Advisor</span>
+                </span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="/#features">Features</a></li>
+                <li><a href="/#process">How It Works</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#contact" class="btn-primary">Request a Demo</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main class="bio">
+        <div class="container">
+            <article class="bio-card">
+                <div class="bio-band">
+                    <img src="assets/paladin-icon.png" alt="">
+                    <div>
+                        <p class="eyebrow">ASHFORD &amp; BRIGGS LLC</p>
+                        <h1>John Evans</h1>
+                        <p class="role"><strong>CEO</strong> · Founder, Paladin Recruiter</p>
+                    </div>
+                </div>
+
+                <div class="bio-body">
+                    <div class="bio-actions">
+                        <a class="btn-primary span2" href="john-evans.vcf" download="John-Evans.vcf">Save contact</a>
+                        <a class="btn-outline" href="tel:+19046120239">Call</a>
+                        <a class="btn-outline" href="mailto:jevans@ashfordbriggs.com">Email</a>
+                    </div>
+
+                    <ul class="bio-contact">
+                        <li><span class="k">Phone</span><a class="v" href="tel:+19046120239">904-612-0239</a></li>
+                        <li><span class="k">Email</span><a class="v" href="mailto:jevans@ashfordbriggs.com">jevans@ashfordbriggs.com</a></li>
+                        <li><span class="k">Company</span><a class="v" href="https://www.ashfordbriggs.com">Ashford &amp; Briggs LLC</a></li>
+                        <li><span class="k">Product</span><a class="v" href="/">paladinrecruiter.com</a></li>
+                        <li><span class="k">LinkedIn</span><a class="v" href="https://www.linkedin.com/company/ashford-briggs-llc">Ashford &amp; Briggs</a></li>
+                    </ul>
+
+                    <div class="bio-text">
+                        <p class="lead">I build Paladin Recruiter, a realtime advisor that sits on a recruiter's phone call and briefs, transcribes, and files every conversation for the firm.</p>
+                        <p>Ashford &amp; Briggs is a Jacksonville, Florida company. I built the recruiter product and the live call console, and I run our sales myself: the demo is a real call on real phone lines, and you watch the file build itself. My co-founder Matt Barker built the telephony, the phone servers, and the mobile app.</p>
+                        <p>If you run a staffing firm and want to see it on a live call, email me or <a href="/#contact">request a demo</a>. Thirty minutes, nothing staged.</p>
+                    </div>
+
+                    <div class="bio-foot">
+                        <p>Paladin Recruiter is an <a href="https://www.ashfordbriggs.com"><strong>Ashford &amp; Briggs</strong></a> product.</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Paladin | An Ashford &amp; Briggs Product. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="/">Home</a>
+                    <a href="https://www.ashfordbriggs.com/privacy.html">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
