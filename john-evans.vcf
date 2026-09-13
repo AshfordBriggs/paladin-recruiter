@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Evans;John;;;
+FN:John Evans
+ORG:Ashford & Briggs LLC
+TITLE:CEO
+EMAIL;TYPE=INTERNET,WORK:jevans@ashfordbriggs.com
+TEL;TYPE=WORK,VOICE:+19046120239
+URL:https://paladinrecruiter.com/john-evans
+URL;TYPE=WORK:https://paladinrecruiter.com
+URL;TYPE=LinkedIn:https://www.linkedin.com/in/jevans444
+NOTE:Paladin Recruiter — realtime advisor for recruiting calls. An Ashford & Briggs product.
+END:VCARD
