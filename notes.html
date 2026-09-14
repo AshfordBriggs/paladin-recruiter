@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Field notes from building Paladin Recruiter, the realtime advisor for recruiting calls: what we're learning by running real calls through it.">
+    <meta name="author" content="Ashford & Briggs">
+    <title>Field Notes | Paladin Recruiter</title>
+
+    <link rel="canonical" href="https://paladinrecruiter.com/notes">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://paladinrecruiter.com/notes">
+    <meta property="og:title" content="Field Notes | Paladin Recruiter">
+    <meta property="og:description" content="Short notes from building Paladin and running real recruiting calls through it.">
+    <meta property="og:image" content="https://paladinrecruiter.com/assets/paladin-logo-horizontal.png">
+
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <nav class="container nav-container">
+            <a href="/" class="logo">
+                <img src="assets/paladin-icon.png" alt="Paladin helmet mark" class="logo-mark">
+                <span class="logo-text">
+                    <span class="logo-name">Paladin</span>
+                    <span class="logo-subtitle">Realtime Advisor</span>
+                </span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="/#features">Features</a></li>
+                <li><a href="/#process">How It Works</a></li>
+                <li><a href="notes.html">Notes</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#contact" class="btn-primary">Request a Demo</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main class="notes-page">
+        <div class="container">
+            <header class="section-header">
+                <p class="exhibit-label">FIELD NOTES — FROM THE FOUNDER</p>
+                <h1>What we're learning by using it.</h1>
+                <p>Short notes from building Paladin and running real calls through it. Written by John Evans, CEO of Ashford &amp; Briggs. Only what is live gets described here.</p>
+            </header>
+
+            <div class="note-list">
+                <article class="note-entry" id="wrapper-problem">
+                    <p class="note-date">2026-09-11</p>
+                    <h2>The wrapper problem</h2>
+                    <p>A year ago most AI startups were a wrapper around ChatGPT.</p>
+                    <p>This year they're a wrapper around Claude Code or Codex. Same idea, one level up. Raw model to agent harness.</p>
+                    <p>That's fine. Some of those will be great businesses. But it's not what we're doing.</p>
+                    <p>Paladin's core tech is the phone line. The call comes in, the audio streams through us, the recruiter gets guidance while the candidate is still talking. You can't wrap that around an agent harness. You have to build the telecom stack, and then you have to make it fast enough to matter on a live call.</p>
+                    <p>Somebody told me this week that every hard problem you get through makes the moat a little wider. I think that's right. The phone is the hard problem. It's also the whole product.</p>
+                    <p class="note-byline">John Evans, CEO, Ashford &amp; Briggs</p>
+                </article>
+
+                <article class="note-entry" id="junior-to-senior">
+                    <p class="note-date">2026-09-11</p>
+                    <h2>Junior to senior in weeks</h2>
+                    <p>Four senior recruiters have seen Paladin so far. One of them ran a national staffing firm.</p>
+                    <p>His read, roughly: you could take someone fresh out of school, hand them this, and have them running calls like a senior recruiter in a couple of weeks. And your senior people double their output.</p>
+                    <p>I've been careful not to put numbers on this that we haven't earned yet. But that second part is the one that gets the owners leaning in. Not replacing recruiters. Making the ones you have twice as useful.</p>
+                    <p>Here's what the recruiter actually sees during a call. The candidate's file is digested before the phone rings. The questions are ready. The follow-ups come in while the answer is still landing.</p>
+                    <p class="note-byline">John Evans, CEO, Ashford &amp; Briggs</p>
+                </article>
+
+                <article class="note-entry" id="real-interview">
+                    <p class="note-date">2026-09-11</p>
+                    <h2>I used it on a real interview today</h2>
+                    <p>Ran an actual hiring conversation through Paladin this afternoon. Not a demo script, a role we're filling.</p>
+                    <p>Before the call it wrote the job description and the question set from the candidate's profile. During the call it fed me follow-ups, some I wouldn't have thought to ask. After the call I had a summary, a fit score, and a list of next steps before I'd finished my coffee.</p>
+                    <p>It also surfaced three UI bugs, which is what happens when you use your own product for something that matters. Those are on the board for tomorrow.</p>
+                    <p>The candidate's reaction was the interesting part. They spent the second half of the call asking about the product instead of answering questions about themselves.</p>
+                    <p class="note-byline">John Evans, CEO, Ashford &amp; Briggs</p>
+                </article>
+
+                <article class="note-entry" id="real-time">
+                    <p class="note-date">2026-09-11</p>
+                    <h2>What "real time" actually means on a phone call</h2>
+                    <p>Everyone says real time. Here's ours, specifically.</p>
+                    <p>Worst case, 15 seconds from the candidate saying something to the recruiter seeing a prompt about it. Usually a lot less. That's the budget we design against, because a phone conversation moves on. A suggestion that shows up after the topic has changed isn't help, it's noise.</p>
+                    <p>So the work isn't the model. The model is fine. The work is transcription that keeps up, context that's already loaded before the call starts, and a pipeline short enough that the advice lands while the question is still open.</p>
+                    <p>The candidate's file gets digested before the phone rings. That's how you buy back the seconds.</p>
+                    <p class="note-byline">John Evans, CEO, Ashford &amp; Briggs</p>
+                </article>
+
+                <article class="note-entry" id="bias-question">
+                    <p class="note-date">2026-09-11</p>
+                    <h2>The bias question</h2>
+                    <p>Something came up today that I want to think out loud about.</p>
+                    <p>If the recruiter is getting guidance from a system that read the candidate's file, how much of that file does the recruiter actually need to see?</p>
+                    <p>We could go pretty far. Hide the name. Hide the city. Hide the school. Score the answers on the phone, not the resume. How far you go would be up to the firm and what they've promised their clients.</p>
+                    <p>We haven't built that yet. But the phone-first design makes it possible in a way a resume-first tool never could, and I think it's worth writing up properly.</p>
+                    <p>If you run a staffing firm and you've been asked about bias in your process, I'd like to hear what your clients are actually asking for. <a href="mailto:jevans@ashfordbriggs.com">jevans@ashfordbriggs.com</a></p>
+                    <p class="note-byline">John Evans, CEO, Ashford &amp; Briggs</p>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Paladin | An Ashford &amp; Briggs Product. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="/">Home</a>
+                    <a href="https://www.ashfordbriggs.com/privacy.html">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
