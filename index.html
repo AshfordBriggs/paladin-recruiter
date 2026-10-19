@@ -21,7 +21,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,500&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -54,34 +54,47 @@
 
     <!-- Hero -->
     <section id="home" class="hero">
+        <div class="grid-backdrop" aria-hidden="true">
+            <div class="grid-glow"><i class="g1"></i><i class="g2"></i><i class="g3"></i><i class="g4"></i><i class="g5"></i><i class="g6"></i><i class="g7"></i><i class="g8"></i></div>
+        </div>
         <div class="container hero-content">
             <div class="hero-copy">
-                <p class="eyebrow"><span class="live-dot"></span>LIVE — REAL-TIME INTELLIGENCE FOR RECRUITING CALLS</p>
-                <h1 class="hero-title">Great recruiters have always relied on instinct.<br><span class="accent">Now instinct gets an information advantage.</span></h1>
-                <p class="hero-subtitle">You've seen what AI can do with your writing, your research, your analysis. Paladin puts that same intelligence behind you on live calls — briefing you before you dial, surfacing the follow-up worth asking, flagging when the story on the phone drifts from the resume on file. The AI thinks at full power. You do what AI never could: actually be there.</p>
+                <p class="eyebrow"><span class="live-dot"></span>Live — real-time intelligence for recruiting calls</p>
+                <h1 class="hero-title"><span class="hero-line">Great recruiters have always relied on <em>instinct.</em></span> <span class="hero-line accent">Now instinct gets an information advantage.</span></h1>
+                <p class="hero-subtitle">Paladin puts that intelligence behind you on live calls: a brief before you dial, the follow-up worth asking, a flag when the story on the phone drifts from the resume on file. The AI thinks at full power. You do what it never could: actually be there.</p>
                 <div class="hero-cta">
-                    <a href="#contact" class="btn-primary btn-large">Request a Demo</a>
+                    <a href="#contact" class="btn-primary btn-large">Request a Demo <svg class="btn-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
                     <a href="#process" class="btn-secondary btn-large">See How It Works</a>
                 </div>
                 <p class="hero-product-line">An <a href="https://www.ashfordbriggs.com"><strong>Ashford &amp; Briggs</strong></a> product</p>
             </div>
 
-            <div class="hero-visual">
-                <div class="transcript-panel">
-                    <div class="transcript-chrome">
-                        <span class="live-dot"></span>
-                        <span class="chrome-label">PALADIN · LIVE TRANSCRIPT</span>
-                        <span class="chrome-meta">speakers separated · sub-second</span>
+            <!-- The call stage: Paladin's own in-call screen, drawn in its chrome.
+                 The people's words on the left; Paladin's notes on the right, for the recruiter only. -->
+            <figure class="call-stage" aria-label="Paladin's screen during a live call">
+                <div class="stage-bar">
+                    <span class="stage-brand">Paladin</span>
+                    <span class="stage-sep"></span>
+                    <span class="stage-who">Candidate · Senior Platform Engineer</span>
+                    <span class="stage-clock">12:44</span>
+                    <span class="stage-live"><span class="live-dot"></span>LIVE</span>
+                    <span class="stage-actions"><span class="stage-btn stage-btn-end">End call</span><span class="stage-btn stage-btn-report">Generate report</span></span>
+                </div>
+                <div class="stage-body">
+                    <div class="stage-col stage-transcript">
+                        <p class="stage-label">Live transcript</p>
+                        <div class="t-line t-cand t-1"><span class="spk">Candidate</span><p>“…so I led that Kafka migration end to end.”</p><span class="tc">+12:31</span></div>
+                        <div class="t-line t-you t-3"><span class="spk">You</span><p>“Who owned the cutover weekend? Walk me through the go/no-go call.”</p><span class="tc">+12:38</span></div>
+                        <div class="t-line t-cand t-5"><span class="spk">Candidate</span><p>“Well, it was a team effort, but I<span class="caret"></span></p><span class="tc">+12:44</span></div>
                     </div>
-                    <div class="transcript-body">
-                        <p class="t-line t-1"><span class="tc">[00:12:31]</span> <span class="spk">CANDIDATE</span> …so I led that Kafka migration end to end.</p>
-                        <p class="t-line t-flag t-2"><span class="tc">[00:12:33]</span> <span class="spk">⚑ TRUST</span> Resume says "contributed to" the migration. LinkedIn dates put him on the team 4 months.</p>
-                        <p class="t-line t-ask t-3"><span class="tc">[00:12:33]</span> <span class="spk">▸ ASK</span> "Who owned the cutover weekend — walk me through the go/no-go call."</p>
-                        <p class="t-line t-ctx t-4"><span class="tc">[00:12:40]</span> <span class="spk">◈ CONTEXT</span> Kafka — distributed event streaming platform. "Cutover" = the switchover to the new system.</p>
-                        <p class="t-line t-cursor t-5"><span class="tc">[00:12:44]</span> <span class="spk">CANDIDATE</span> Well — it was a team effort, but I<span class="caret"></span></p>
+                    <div class="stage-col stage-advisor">
+                        <p class="stage-label">Realtime advisor · for the recruiter · the candidate never hears this</p>
+                        <div class="t-line a-card a-flag t-2"><span class="spk">Flag</span><p>Resume says “contributed to” the migration. LinkedIn dates put him on the team four months.</p></div>
+                        <div class="t-line a-card a-ask t-2"><span class="spk">Ask about</span><p>Who owned the cutover weekend, and how the go/no-go call was made.</p></div>
+                        <div class="t-line a-card a-term t-4"><span class="spk">Term</span><p>Kafka: a distributed event-streaming platform. “Cutover” is the switch to the new system.</p></div>
                     </div>
                 </div>
-            </div>
+            </figure>
         </div>
     </section>
 
