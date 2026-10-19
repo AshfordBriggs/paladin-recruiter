@@ -574,45 +574,39 @@ a:hover { opacity: 0.85; }
 
 /* ---------- production ---------- */
 
+/* The page's one dark band: the firm's side of the product, set as
+   ashfordbriggs.com sets its firm band. Charcoal cards over the deeper ink. */
 .production {
-    background:
-        radial-gradient(ellipse 800px 480px at 50% 120%, rgba(52, 211, 153, 0.08), transparent 60%),
-        var(--ink);
+    background: linear-gradient(to bottom, var(--ink), var(--ink-deep));
     color: var(--fog);
     padding: 6rem 0;
-    text-align: center;
 }
-.production h2 { color: #fff; max-width: 700px; margin: 1.6rem auto 1rem; }
-.production-lead { color: var(--fog-dim); max-width: 620px; margin: 0 auto 2.5rem; font-size: 1.1rem; }
+.production-head { max-width: 720px; margin-bottom: 3rem; }
+.production-label { display: flex; align-items: center; gap: 10px; color: var(--blue); }
+.production h2 { color: #fff; font-size: 2.5rem; margin-bottom: 1rem; }
+.production-lead { color: var(--fog-dim); max-width: 620px; font-size: 1.15rem; margin: 0; }
 
-.stamp {
-    display: inline-block;
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.28em;
-    color: var(--green);
-    border: 2px solid var(--green);
-    border-radius: 4px;
-    padding: 0.5rem 1.2rem;
-    transform: rotate(-2deg);
-    opacity: 0.9;
+.proof-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.4rem;
 }
-
-.proof-strip {
-    list-style: none;
-    max-width: 640px;
-    margin: 0 auto;
-    text-align: left;
-    font-family: var(--font-mono);
-    font-size: 0.82rem;
-    line-height: 2.2;
-    color: var(--fog);
-    border: 1px solid var(--ink-line);
-    border-radius: 8px;
+.proof-card {
     background: var(--ink-panel);
-    padding: 1.4rem 1.8rem;
+    border: 1px solid var(--ink-line);
+    border-radius: 12px;
+    padding: 1.8rem 1.8rem 1.6rem;
 }
+.proof-label {
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 0.9rem;
+}
+.proof-card h3 { color: #fff; font-size: 1.3rem; margin-bottom: 0.6rem; }
+.proof-card p:last-child { color: var(--fog-dim); font-size: 0.97rem; margin: 0; }
 
 /* ---------- about ---------- */
 
@@ -813,6 +807,7 @@ a:hover { opacity: 0.85; }
     .note-cards { grid-template-columns: 1fr; }
     .features-grid { grid-template-columns: 1fr 1fr; }
     .process-steps { grid-template-columns: 1fr 1fr; }
+    .production h2 { font-size: 2rem; }
     .about-content { grid-template-columns: 1fr; }
     .contact-content { grid-template-columns: 1fr; }
     .footer-content { grid-template-columns: 1fr 1fr; }
@@ -855,6 +850,7 @@ a:hover { opacity: 0.85; }
 
     .features-grid { grid-template-columns: 1fr; }
     .process-steps { grid-template-columns: 1fr; }
+    .proof-grid { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
     .note-entry { padding: 1.6rem 1.3rem 1.4rem; }
     .footer-content { grid-template-columns: 1fr; }
