@@ -5,6 +5,8 @@ export const groupIcons: Record<string, string> = {
   Guides: 'file',
   Reference: 'book',
   Calls: 'phone',
+  API: 'code',
+  Endpoints: 'terminal',
 };
 
 export type Tab = { label: string; href: string; isCurrent: boolean };

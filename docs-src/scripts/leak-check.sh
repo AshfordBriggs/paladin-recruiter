@@ -14,7 +14,9 @@ report() { echo "LEAK ($1):"; echo "$2" | sed 's/^/  /'; status=1; }
 hits=$(grep -nE '\b[0-9]{1,3}(\.[0-9]{1,3}){3}\b' $files | grep -vE '\b(127\.0\.0\.1|0\.0\.0\.0)\b')
 [ -n "$hits" ] && report "IPv4 address" "$hits"
 
-hits=$(grep -nE '(\+1[0-9]{10}|\(?[0-9]{3}\)?[-. ][0-9]{3}[-. ][0-9]{4})\b' $files)
+# 555-0100 to 555-0199 is reserved for fiction, so examples may use it.
+hits=$(grep -nE '(\+1[0-9]{10}|\(?[0-9]{3}\)?[-. ][0-9]{3}[-. ][0-9]{4})\b' $files \
+  | grep -vE '(\+1[0-9]{3}|[0-9]{3}[-. ])555[-. ]?01[0-9]{2}\b')
 [ -n "$hits" ] && report "phone number" "$hits"
 
 hits=$(grep -nEi '(sk-ant-|sk-[A-Za-z0-9]{20,}|BEGIN [A-Z ]*PRIVATE KEY|Bearer [A-Za-z0-9._-]{20,})' $files)

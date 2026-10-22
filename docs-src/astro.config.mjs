@@ -52,6 +52,18 @@ export default defineConfig({
           ],
         },
         { label: 'Reference', items: [{ autogenerate: { directory: 'reference' } }] },
+        {
+          label: 'API',
+          items: [
+            { slug: 'api', label: 'Overview', attrs: { 'data-icon': 'compass' } },
+            'api/authentication',
+            'api/conventions',
+            'api/limits',
+            'api/errors',
+            'api/change-feed',
+            { label: 'Endpoints', items: [{ autogenerate: { directory: 'api/endpoints' } }] },
+          ],
+        },
       ],
       plugins: [starlightLlmsTxt()],
     }),
