@@ -55,4 +55,4 @@ You can change any of these settings later in your **Profile**.
 ## Related
 
 - [Call a candidate](../../calls/call-a-candidate/)
-- [Install the Paladin Dialer](/dialer) on your phone
+- [Install the Paladin Dialer](../../dialer/install-the-dialer/) on your phone
