@@ -46,8 +46,8 @@ One candidate being considered for one job. A candidate can have several opportu
 
 ### Paladin Dialer
 
-The phone app you use to place calls through Paladin. [Install it](/dialer).
+The phone app you use to place calls through Paladin. [Install it](../../dialer/install-the-dialer/).
 
 ### Paladin number
 
-Your business line. Calls to it ring your own phone, and calls you place through the Paladin Dialer show it as the caller ID.
+Your business line. Calls to it ring your own phone, and calls you start from Paladin or the Paladin Dialer show it as the caller ID.

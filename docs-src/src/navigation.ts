@@ -4,7 +4,12 @@
 export const groupIcons: Record<string, string> = {
   Guides: 'file',
   Reference: 'book',
+  Jobs: 'briefcase',
+  Candidates: 'users',
   Calls: 'phone',
+  Reports: 'file-text',
+  Pipeline: 'kanban',
+  'Paladin Dialer': 'smartphone',
   API: 'code',
   Endpoints: 'terminal',
 };

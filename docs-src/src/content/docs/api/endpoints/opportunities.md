@@ -18,7 +18,7 @@ fit score, the AI's analysis, and the latest report.
 |---|---|
 | `job_id` | Only opportunities on this job. |
 | `candidate_id` | Only this candidate's opportunities. |
-| `status` | Exact match. Values in use: `new`, `analyzing`, `ready`, `error`, `submitted`, `interviewing`, `placed`, `rejected`. |
+| `status` | Exact match. See `status` below. |
 | `updated_since` | Only opportunities changed at or after this UTC time. |
 | `include_archived` | `true` to include archived candidates. |
 | `limit`, `offset` | See [Paging](../../conventions/#paging). |
@@ -39,7 +39,7 @@ fit score, the AI's analysis, and the latest report.
         "status": "in_progress"
       },
       "job": { "id": "0b7d5e3c-2a1f-4c6e-9d8b-7a6f5e4d3c2b", "name": "Senior Logistics Coordinator" },
-      "status": "submitted",
+      "status": "completed",
       "fit_score": 84,
       "ai_fit_score": 78,
       "analysis_status": "ready",
@@ -56,6 +56,7 @@ fit score, the AI's analysis, and the latest report.
 
 | Field | Description |
 |---|---|
+| `status` | Where the candidate stands on this job. Recruiters set `new`, `ready`, `scheduled`, `in_call`, `completed` or `rejected`. Paladin sets `analyzing` while it analyzes the fit, and `error` or `analysis_failed` if that fails. |
 | `fit_score` | The score to show, 0 to 100: the recruiter's own score if they set one, otherwise the AI's. `null` if neither exists. |
 | `ai_fit_score` | The AI's score alone. If it differs from `fit_score`, a recruiter overrode it. |
 | `analysis_status` | `ready`, `running`, `error` or `none`. |

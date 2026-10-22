@@ -91,7 +91,7 @@ Every job, sorted by title. Also takes `status` to filter jobs, for example
       "client": { "id": "7e6d5c4b-3a2f-4e1d-9c8b-7a6f5e4d3c2b", "name": "Northwind Freight" },
       "candidates": 14,
       "analyzed": 12,
-      "status_counts": { "ready": 8, "submitted": 3, "interviewing": 1 },
+      "status_counts": { "ready": 8, "scheduled": 3, "completed": 2 },
       "calls_in_range": 22,
       "reports_in_range": 6,
       "last_activity_at": "2026-10-21T19:40:02.517Z"

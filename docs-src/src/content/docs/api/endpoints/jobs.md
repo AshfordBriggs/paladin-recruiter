@@ -18,7 +18,7 @@ way.
 | Parameter | Description |
 |---|---|
 | `client_id` | Only jobs for this client. |
-| `status` | Exact match. Values in use: `active`, `paused`, `filled`, `closed`. |
+| `status` | Exact match: `active`, `on_hold`, `filled` or `closed`. |
 | `updated_since` | Only jobs changed at or after this UTC time. |
 | `limit`, `offset` | See [Paging](../../conventions/#paging). |
 
@@ -52,7 +52,7 @@ way.
 
 | Field | Description |
 |---|---|
-| `status` | Set by the recruiter. Values in use: `active`, `paused`, `filled`, `closed`. |
+| `status` | Set by the recruiter: `active`, `on_hold`, `filled` or `closed`. |
 | `client` | The client company, or `null` for an internal role. |
 | `hiring_manager` | The hiring manager. `id` is `null` when only a name and contact details were typed on the job. |
 | `owner` | The recruiter who owns the job, or `null` for older jobs. |
@@ -91,7 +91,7 @@ The candidates being considered for this job, as
 
 | Parameter | Description |
 |---|---|
-| `status` | Exact match on the opportunity status, for example `submitted`. |
+| `status` | Exact match on the opportunity status, for example `ready`. |
 | `include_archived` | `true` to include archived candidates. |
 | `limit`, `offset` | See [Paging](../../conventions/#paging). |
 
