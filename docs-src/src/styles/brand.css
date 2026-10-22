@@ -10,9 +10,12 @@
 
   --sl-text-body: 1.0625rem;
   --sl-line-height: 1.7;
-  --sl-content-width: 40rem;
-  --sl-sidebar-width: 17rem;
-  --sl-nav-height: 3.75rem;
+  --sl-content-width: 44rem;
+  --sl-sidebar-width: 18rem;
+  /* header = top bar + tab row (src/components/Header.astro) */
+  --pd-bar-height: 3.75rem;
+  --pd-tabs-height: 3rem;
+  --sl-nav-height: calc(var(--pd-bar-height) + var(--pd-tabs-height));
 
   /* dark: app --p-* dark tokens */
   --sl-color-accent-low: rgba(74, 158, 237, 0.12);
@@ -88,7 +91,8 @@
 
 /* ── Header ─────────────────────────────────────────────── */
 
-.header {
+.page > .header {
+  padding-block: 0;
   border-bottom: 1px solid var(--sl-color-hairline);
 }
 .site-title {
@@ -103,10 +107,14 @@
 }
 site-search button[data-open-modal] {
   border: 1px solid var(--sl-color-hairline-light);
-  border-radius: 8px;
+  border-radius: 10px;
   background: transparent;
-  max-width: 16rem;
   font-size: var(--sl-text-sm);
+}
+@media (min-width: 50rem) {
+  site-search button[data-open-modal] {
+    width: 15rem;
+  }
 }
 site-search button[data-open-modal]:hover {
   border-color: var(--sl-color-gray-4);
@@ -115,86 +123,108 @@ site-search kbd {
   border-radius: 4px;
   font-size: 0.7rem;
 }
-.right-group {
-  gap: 1.25rem;
+/* Mobile menu button: centre it on the top bar, not the whole header. */
+.sl-menu-button {
+  top: calc((var(--pd-bar-height) - var(--sl-menu-button-size)) / 2) !important;
 }
 
 /* ── Left sidebar ───────────────────────────────────────── */
 
 .sidebar-pane {
-  border-inline-end: none;
+  border-inline-end: none !important;
 }
 .sidebar-content {
-  padding-top: 1.25rem;
+  padding-top: 1.5rem;
 }
-nav.sidebar ul.top-level > li + li {
-  margin-top: 1.25rem;
-}
-nav.sidebar .group-label .large {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  font-size: var(--sl-text-sm);
-  font-weight: 600;
-  color: var(--sl-color-white);
-}
-nav.sidebar summary {
-  padding-block: 0.2rem;
-}
-nav.sidebar summary .caret {
-  color: var(--sl-color-gray-4);
-}
-nav.sidebar ul ul {
-  border-inline-start: none;
-  margin-inline-start: 0;
-  padding-inline-start: 0;
-  margin-top: 0.35rem;
-}
-nav.sidebar ul ul li {
-  border: none;
+.pd-nav {
+  list-style: none;
   margin: 0;
+  padding: 0;
 }
-nav.sidebar a {
+.pd-nav .pd-nav {
+  margin-top: 0.25rem;
+}
+.pd-nav > li + li {
+  margin-top: 0.15rem;
+}
+.pd-nav > .pd-nav-group {
+  margin-top: 1.75rem;
+}
+.pd-nav-heading {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.4rem 0.65rem;
-  border-radius: 8px;
-  font-size: var(--sl-text-sm);
-  color: var(--sl-color-gray-2);
+  gap: 0.65rem;
+  margin: 0 0 0.35rem;
+  padding-inline: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--sl-color-white);
 }
-nav.sidebar a:hover {
+.pd-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  color: var(--sl-color-gray-2);
+  text-decoration: none;
+  cursor: pointer;
+}
+.pd-nav-link:hover {
   color: var(--sl-color-white);
   background: var(--pd-surface);
 }
-nav.sidebar a[aria-current='page'],
-nav.sidebar a[aria-current='page']:hover {
+.pd-nav-link[aria-current='page'],
+.pd-nav-link[aria-current='page']:hover {
   background: var(--sl-color-accent-low);
   color: var(--sl-color-accent);
   font-weight: 500;
 }
+.pd-nav details > summary {
+  list-style: none;
+}
+.pd-nav details > summary::-webkit-details-marker {
+  display: none;
+}
+.pd-nav details .pd-nav {
+  padding-inline-start: 1rem;
+}
+.pd-caret {
+  transition: transform 0.15s ease;
+}
+.pd-nav details[open] > summary .pd-caret {
+  transform: rotate(90deg);
+}
 
-/* Icons: pages set `sidebar.attrs.data-icon` in front matter; groups get
-   theirs by position, so keep this list in step with the sidebar order in
-   astro.config.mjs. Lucide-style line icons drawn with currentColor. */
-nav.sidebar a[data-icon]::before,
-nav.sidebar ul.top-level > li > details > summary .large::before {
-  content: '';
+/* Icons: an element with data-icon draws that Lucide-style line icon in
+   currentColor. Pages pick one with `sidebar.attrs.data-icon`; tabs and
+   group headings get theirs from src/navigation.ts. */
+.pd-icon {
   flex-shrink: 0;
-  width: 1rem;
-  height: 1rem;
+  width: 1.05rem;
+  height: 1.05rem;
   background: currentColor;
   -webkit-mask: var(--icon) center / contain no-repeat;
   mask: var(--icon) center / contain no-repeat;
 }
-nav.sidebar ul.top-level > li:nth-child(1) summary .large { --icon: var(--i-compass); }
-nav.sidebar ul.top-level > li:nth-child(2) summary .large { --icon: var(--i-phone); }
-nav.sidebar ul.top-level > li:nth-child(3) summary .large { --icon: var(--i-book); }
-nav.sidebar a[data-icon='user'] { --icon: var(--i-user); }
-nav.sidebar a[data-icon='phone-out'] { --icon: var(--i-phone-out); }
-nav.sidebar a[data-icon='list'] { --icon: var(--i-list); }
+[data-icon='book'] { --icon: var(--i-book); }
+[data-icon='chevron'] { --icon: var(--i-chevron); }
+[data-icon='compass'] { --icon: var(--i-compass); }
+[data-icon='file'] { --icon: var(--i-file); }
+[data-icon='list'] { --icon: var(--i-list); }
+[data-icon='message'] { --icon: var(--i-message); }
+[data-icon='phone'] { --icon: var(--i-phone); }
+[data-icon='phone-out'] { --icon: var(--i-phone-out); }
+[data-icon='smartphone'] { --icon: var(--i-smartphone); }
+[data-icon='user'] { --icon: var(--i-user); }
 
 :root {
+  --i-file: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/><polyline points='14 2 14 8 20 8'/><line x1='8' y1='13' x2='16' y2='13'/><line x1='8' y1='17' x2='16' y2='17'/></svg>");
+  --i-chevron: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='9 18 15 12 9 6'/></svg>");
+  --i-message: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z'/></svg>");
+  --i-smartphone: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='5' y='2' width='14' height='20' rx='2'/><line x1='12' y1='18' x2='12.01' y2='18'/></svg>");
   --i-compass: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><polygon points='16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76'/></svg>");
   --i-phone: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z'/></svg>");
   --i-phone-out: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='23 7 23 1 17 1'/><line x1='16' y1='8' x2='23' y2='1'/><path d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z'/></svg>");
@@ -278,11 +308,9 @@ starlight-toc a[aria-current='true'] {
   background: var(--pd-surface);
   font-size: 0.85em;
 }
-.sl-markdown-content dt {
-  margin-top: 1.25rem;
-}
-.sl-markdown-content dd {
-  margin-inline-start: 0;
+.sl-markdown-content h3 {
+  margin-top: 2rem;
+  font-size: 1.2rem;
 }
 
 /* Tables: hairline rows, no stripes, small muted header. */
@@ -371,16 +399,6 @@ starlight-toc a[aria-current='true'] {
 .sl-link-card .description {
   color: var(--sl-color-gray-3);
   font-size: var(--sl-text-sm);
-}
-
-/* Home hero */
-.hero h1 {
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  color: var(--sl-color-white);
-}
-.hero .tagline {
-  color: var(--sl-color-gray-3);
 }
 
 /* Footer feedback and pagination */

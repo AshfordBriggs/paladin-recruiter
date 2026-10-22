@@ -15,9 +15,13 @@ export default defineConfig({
       customCss: ['./src/styles/brand.css'],
       components: {
         Footer: './src/components/Footer.astro',
+        Header: './src/components/Header.astro',
         PageTitle: './src/components/PageTitle.astro',
+        Sidebar: './src/components/Sidebar.astro',
         SocialIcons: './src/components/SocialIcons.astro',
+        ThemeSelect: './src/components/ThemeSelect.astro',
       },
+      routeMiddleware: './src/routeData.ts',
       head: [
         { tag: 'link', attrs: { rel: 'preconnect', href: 'https://fonts.googleapis.com' } },
         { tag: 'link', attrs: { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true } },
@@ -29,9 +33,24 @@ export default defineConfig({
           },
         },
       ],
+      // Each top-level group is a header tab (src/routeData.ts). Inside a tab,
+      // loose pages come first, then groups shown as fixed headings. Icons for
+      // tabs and groups: src/navigation.ts.
       sidebar: [
-        { label: 'Get started', items: [{ autogenerate: { directory: 'get-started' } }] },
-        { label: 'Calls', items: [{ autogenerate: { directory: 'calls' } }] },
+        {
+          label: 'Guides',
+          items: [
+            { slug: 'index', label: 'Overview', attrs: { 'data-icon': 'compass' } },
+            'get-started/set-up-your-account',
+            { label: 'Install the Dialer', link: 'https://paladinrecruiter.com/dialer', attrs: { 'data-icon': 'smartphone' } },
+            {
+              label: 'Report feedback',
+              link: 'mailto:inquiries@ashfordbriggs.com?subject=Paladin%20docs%20feedback',
+              attrs: { 'data-icon': 'message' },
+            },
+            { label: 'Calls', items: [{ autogenerate: { directory: 'calls' } }] },
+          ],
+        },
         { label: 'Reference', items: [{ autogenerate: { directory: 'reference' } }] },
       ],
       plugins: [starlightLlmsTxt()],

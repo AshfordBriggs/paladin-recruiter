@@ -9,7 +9,10 @@ const { entry, sidebar } = Astro.locals.starlightRoute;
 type Item = { type: string; label: string; isCurrent?: boolean; entries?: Item[] };
 const hasCurrent = (items: Item[]): boolean =>
   items.some((i) => i.isCurrent || (i.entries ? hasCurrent(i.entries) : false));
-const section = (sidebar as Item[]).find((i) => i.type === 'group' && hasCurrent(i.entries ?? []))?.label;
+// The group the page sits in, or the tab for pages outside any group.
+const section =
+  (sidebar as Item[]).find((i) => i.type === 'group' && hasCurrent(i.entries ?? []))?.label ??
+  Astro.locals.tabs?.find((t) => t.isCurrent)?.label;
 
 const { title, subtitle } = entry.data;
 const markdown = `# ${title}\n\n${entry.body ?? ''}`.trim();
