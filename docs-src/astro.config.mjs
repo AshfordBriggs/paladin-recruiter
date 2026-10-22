@@ -40,7 +40,7 @@ export default defineConfig({
         {
           label: 'Guides',
           items: [
-            { slug: 'index', label: 'Overview', attrs: { 'data-icon': 'compass' } },
+            { slug: 'index', label: 'Quickstart', attrs: { 'data-icon': 'rocket' } },
             'get-started/set-up-your-account',
             { label: 'Install the Dialer', link: 'https://paladinrecruiter.com/dialer', attrs: { 'data-icon': 'smartphone' } },
             {
