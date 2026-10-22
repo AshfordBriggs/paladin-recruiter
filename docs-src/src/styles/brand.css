@@ -1,0 +1,54 @@
+/* Paladin brand on Starlight. Colors from the site's styles.css (the brand kit):
+   paper and charcoal for light mode, the console ink for dark mode. */
+
+:root {
+  --sl-font: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --sl-font-mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+}
+
+/* Dark: console ground */
+:root {
+  --sl-color-accent-low: #12305a;
+  --sl-color-accent: #4a9eed;
+  --sl-color-accent-high: #cfe5fb;
+  --sl-color-white: #f4f2ee;
+  --sl-color-gray-1: #e8e6e1;
+  --sl-color-gray-2: #c9c7c2;
+  --sl-color-gray-3: #8b8fa3;
+  --sl-color-gray-4: #5c6270;
+  --sl-color-gray-5: #2a2e3d;
+  --sl-color-gray-6: #1a1d27;
+  --sl-color-black: #0f1117;
+}
+
+/* Light: paper dossier */
+:root[data-theme='light'] {
+  --sl-color-accent-low: #eef6ff;
+  --sl-color-accent: #0a66c2;
+  --sl-color-accent-high: #0b3d73;
+  --sl-color-white: #19202e;
+  --sl-color-gray-1: #19202e;
+  --sl-color-gray-2: #2f3646;
+  --sl-color-gray-3: #5c6270;
+  --sl-color-gray-4: #8a8f9b;
+  --sl-color-gray-5: #b9b4aa;
+  --sl-color-gray-6: #e9e6e0;
+  --sl-color-gray-7: #f4f2ee;
+  --sl-color-black: #ffffff;
+}
+
+/* Steps read as the main thing on a task page: larger numbers, more air. */
+.sl-markdown-content ol > li {
+  margin-top: 0.6rem;
+}
+
+/* UI labels are bold in the copy; give them a faint button-like tint so the
+   eye matches them to the screen. */
+.sl-markdown-content ol strong {
+  color: var(--sl-color-accent-high);
+}
+
+.site-title {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}

@@ -1,0 +1,45 @@
+---
+title: Home
+description: Step-by-step help for Paladin Recruiter. Set up your account, call candidates, and use the call screen.
+template: splash
+hero:
+  title: Paladin Recruiter Help
+  tagline: Short, step-by-step answers for the task in front of you.
+  actions:
+    - text: Set up your account
+      link: get-started/set-up-your-account/
+      icon: right-arrow
+    - text: Call a candidate
+      link: calls/call-a-candidate/
+      variant: minimal
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+## Common tasks
+
+<CardGrid>
+  <LinkCard
+    title="Set up your account"
+    description="Your first sign-in: the phone that rings, your caller ID name, your password."
+    href="get-started/set-up-your-account/"
+  />
+  <LinkCard
+    title="Call a candidate"
+    description="Start a call from Paladin so it is transcribed, analyzed and filed on the record."
+    href="calls/call-a-candidate/"
+  />
+  <LinkCard
+    title="Install the Paladin Dialer"
+    description="Get the app on your iPhone or Android phone."
+    href="/dialer"
+  />
+  <LinkCard
+    title="Glossary"
+    description="What Paladin means by a job, an opportunity, a General Call, and more."
+    href="reference/glossary/"
+  />
+</CardGrid>
+
+Can't find what you need? Use **Search** at the top of the page, or email
+[inquiries@ashfordbriggs.com](mailto:inquiries@ashfordbriggs.com).

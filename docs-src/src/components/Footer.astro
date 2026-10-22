@@ -1,0 +1,23 @@
+---
+// Starlight's footer plus a feedback link on every page (FEAT-131).
+import Default from '@astrojs/starlight/components/Footer.astro';
+
+const page = new URL(Astro.url.pathname, Astro.site).href;
+const title = Astro.locals.starlightRoute.entry.data.title;
+const subject = encodeURIComponent(`Docs feedback: ${title}`);
+const body = encodeURIComponent(`Page: ${page}\n\nWhat was wrong or missing?\n`);
+---
+
+<Default><slot /></Default>
+<p class="feedback">
+  Something wrong or missing on this page?
+  <a href={`mailto:inquiries@ashfordbriggs.com?subject=${subject}&body=${body}`}>Tell us</a>
+</p>
+
+<style>
+  .feedback {
+    margin-top: 1.5rem;
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-3);
+  }
+</style>

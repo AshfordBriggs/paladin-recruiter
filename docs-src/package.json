@@ -1,0 +1,18 @@
+{
+  "name": "paladin-docs-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "leak-check": "./scripts/leak-check.sh",
+    "prebuild": "./scripts/leak-check.sh"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "0.42.6",
+    "astro": "7.4.2",
+    "sharp": "0.35.5",
+    "starlight-llms-txt": "0.12.0"
+  }
+}
