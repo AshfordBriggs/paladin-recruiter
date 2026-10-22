@@ -7,7 +7,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "leak-check": "./scripts/leak-check.sh",
-    "prebuild": "./scripts/leak-check.sh"
+    "prebuild": "./scripts/leak-check.sh",
+    "publish": "./scripts/publish.sh",
+    "check-published": "./scripts/check-published.sh"
   },
   "dependencies": {
     "@astrojs/starlight": "0.42.6",
