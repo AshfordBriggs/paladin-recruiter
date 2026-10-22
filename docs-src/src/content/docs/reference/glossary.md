@@ -1,6 +1,10 @@
 ---
 title: Glossary
 description: What Paladin Recruiter means by a job, an opportunity, a General Call, the Call Console, and other terms you'll see in the app.
+subtitle: The words Paladin uses, in plain English.
+sidebar:
+  attrs:
+    data-icon: list
 verified: 2026-10-21
 ---
 

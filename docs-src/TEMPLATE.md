@@ -2,6 +2,10 @@
 ---
 title: Do the task            # a task, in the words a user would type into search
 description: One sentence; it is also the search-result snippet.
+subtitle: A short line under the title (optional).
+sidebar:
+  attrs:
+    data-icon: phone      # an icon defined in src/styles/brand.css
 app_route: /candidates/:id     # the app screen this page helps with (in-app help links)
 features: [FEAT-NNN]           # features it describes; re-check the page when they change
 verified: YYYY-MM-DD           # last walked through against the live product

@@ -1,8 +1,11 @@
 ---
 title: Set up your account
 description: Your first sign-in to Paladin Recruiter. Set the phone that rings, your caller ID name, and your password. It takes about a minute.
+subtitle: Your first sign-in, in about a minute.
 sidebar:
   order: 1
+  attrs:
+    data-icon: user
 app_route: /welcome
 verified: 2026-10-21
 ---

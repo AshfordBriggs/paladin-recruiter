@@ -1,8 +1,11 @@
 ---
 title: Call a candidate
 description: Start a call from a candidate's page so Paladin can transcribe it, show suggestions live, and file the summary on the record.
+subtitle: From the candidate's page to a transcribed, summarized call.
 sidebar:
   order: 1
+  attrs:
+    data-icon: phone-out
 app_route: /candidates/:id
 features: [FEAT-101, FEAT-112]
 verified: 2026-10-21

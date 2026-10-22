@@ -8,6 +8,7 @@ export const collections = {
     loader: docsLoader(),
     schema: docsSchema({
       extend: z.object({
+        subtitle: z.string().optional(),
         app_route: z.string().optional(),
         features: z.array(z.string()).optional(),
         verified: z.coerce.date().optional(),

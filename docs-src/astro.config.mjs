@@ -15,6 +15,8 @@ export default defineConfig({
       customCss: ['./src/styles/brand.css'],
       components: {
         Footer: './src/components/Footer.astro',
+        PageTitle: './src/components/PageTitle.astro',
+        SocialIcons: './src/components/SocialIcons.astro',
       },
       head: [
         { tag: 'link', attrs: { rel: 'preconnect', href: 'https://fonts.googleapis.com' } },

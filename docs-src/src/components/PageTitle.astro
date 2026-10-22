@@ -1,0 +1,93 @@
+---
+// OpenRouter-style page header: section label, title, optional subtitle, and a
+// "Copy page" button that puts the page's Markdown on the clipboard so readers
+// can paste it into their own AI assistant.
+const PAGE_TITLE_ID = '_top'; // Starlight's id for the page title (skip link target)
+
+const { entry, sidebar } = Astro.locals.starlightRoute;
+
+type Item = { type: string; label: string; isCurrent?: boolean; entries?: Item[] };
+const hasCurrent = (items: Item[]): boolean =>
+  items.some((i) => i.isCurrent || (i.entries ? hasCurrent(i.entries) : false));
+const section = (sidebar as Item[]).find((i) => i.type === 'group' && hasCurrent(i.entries ?? []))?.label;
+
+const { title, subtitle } = entry.data;
+const markdown = `# ${title}\n\n${entry.body ?? ''}`.trim();
+---
+
+{section && <p class="page-eyebrow">{section}</p>}
+<div class="page-title-row">
+  <h1 id={PAGE_TITLE_ID}>{title}</h1>
+  <button class="copy-page" type="button" data-markdown={markdown}>
+    <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+    <span>Copy page</span>
+  </button>
+</div>
+{subtitle && <p class="page-subtitle">{subtitle}</p>}
+
+<script>
+  for (const button of document.querySelectorAll<HTMLButtonElement>('.copy-page')) {
+    button.addEventListener('click', async () => {
+      const label = button.querySelector('span')!;
+      try {
+        await navigator.clipboard.writeText(button.dataset.markdown ?? '');
+        label.textContent = 'Copied';
+      } catch {
+        label.textContent = 'Copy failed';
+      }
+      setTimeout(() => (label.textContent = 'Copy page'), 1800);
+    });
+  }
+</script>
+
+<style>
+  .page-eyebrow {
+    margin: 1rem 0 0.35rem;
+    font-size: var(--sl-text-sm);
+    font-weight: 500;
+    color: var(--sl-color-accent);
+  }
+  .page-title-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  h1 {
+    margin: 0;
+    font-size: 2.25rem;
+    line-height: 1.2;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    color: var(--sl-color-white);
+  }
+  .copy-page {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.4rem;
+    padding: 0.35rem 0.7rem;
+    border: 1px solid var(--sl-color-hairline-light);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--sl-color-gray-2);
+    font: inherit;
+    font-size: var(--sl-text-xs);
+    cursor: pointer;
+  }
+  .copy-page:hover {
+    color: var(--sl-color-white);
+    background: var(--sl-color-gray-6);
+  }
+  .page-subtitle {
+    margin: 0.4rem 0 0;
+    font-size: 1.0625rem;
+    color: var(--sl-color-gray-3);
+  }
+  @media (max-width: 40rem) {
+    .copy-page span {
+      display: none;
+    }
+  }
+</style>

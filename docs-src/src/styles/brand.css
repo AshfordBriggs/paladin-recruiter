@@ -1,54 +1,394 @@
-/* Paladin brand on Starlight. Colors from the site's styles.css (the brand kit):
-   paper and charcoal for light mode, the console ink for dark mode. */
+/* Paladin docs theme: OpenRouter's docs layout and spacing, Paladin's own
+   colors (the app's --p-* tokens in paladin-recruiter-interface styles.scss)
+   and the Outfit font. Starlight is dark by default; light overrides follow. */
+
+/* ── Tokens ─────────────────────────────────────────────── */
 
 :root {
   --sl-font: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --sl-font-mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
-}
 
-/* Dark: console ground */
-:root {
-  --sl-color-accent-low: #12305a;
+  --sl-text-body: 1.0625rem;
+  --sl-line-height: 1.7;
+  --sl-content-width: 40rem;
+  --sl-sidebar-width: 17rem;
+  --sl-nav-height: 3.75rem;
+
+  /* dark: app --p-* dark tokens */
+  --sl-color-accent-low: rgba(74, 158, 237, 0.12);
   --sl-color-accent: #4a9eed;
-  --sl-color-accent-high: #cfe5fb;
-  --sl-color-white: #f4f2ee;
-  --sl-color-gray-1: #e8e6e1;
-  --sl-color-gray-2: #c9c7c2;
-  --sl-color-gray-3: #8b8fa3;
-  --sl-color-gray-4: #5c6270;
-  --sl-color-gray-5: #2a2e3d;
-  --sl-color-gray-6: #1a1d27;
-  --sl-color-black: #0f1117;
+  --sl-color-accent-high: #6bb3f5;
+  --sl-color-white: #e8eaed;   /* headings */
+  --sl-color-gray-1: #e8eaed;
+  --sl-color-gray-2: #9ca3af;  /* body text: muted, like OpenRouter */
+  --sl-color-gray-3: #8b929e;
+  --sl-color-gray-4: #6b7280;
+  --sl-color-gray-5: #2e3344;  /* borders */
+  --sl-color-gray-6: #1a1d27;  /* surfaces */
+  --sl-color-black: #0f1117;   /* page */
+
+  --sl-color-bg: #0f1117;
+  --sl-color-bg-nav: #0f1117;
+  --sl-color-bg-sidebar: #0f1117;
+  --sl-color-hairline: #252939;
+  --sl-color-hairline-light: #2e3344;
+  --sl-color-hairline-shade: #0f1117;
+
+  --pd-surface: #1a1d27;
+  --pd-tint-blue: rgba(74, 158, 237, 0.08);
+  --pd-line-blue: rgba(74, 158, 237, 0.28);
+  --pd-tint-green: rgba(52, 211, 153, 0.08);
+  --pd-line-green: rgba(52, 211, 153, 0.28);
+  --pd-tint-amber: rgba(251, 146, 60, 0.08);
+  --pd-line-amber: rgba(251, 146, 60, 0.3);
+  --pd-tint-red: rgba(248, 113, 113, 0.08);
+  --pd-line-red: rgba(248, 113, 113, 0.3);
+  --pd-text-blue: #8ec3f5;
+  --pd-text-green: #6ee7b7;
+  --pd-text-amber: #fdba74;
+  --pd-text-red: #fca5a5;
 }
 
-/* Light: paper dossier */
 :root[data-theme='light'] {
-  --sl-color-accent-low: #eef6ff;
+  /* light: app --p-* light tokens */
+  --sl-color-accent-low: #e8f3ff;
   --sl-color-accent: #0a66c2;
-  --sl-color-accent-high: #0b3d73;
-  --sl-color-white: #19202e;
-  --sl-color-gray-1: #19202e;
-  --sl-color-gray-2: #2f3646;
-  --sl-color-gray-3: #5c6270;
-  --sl-color-gray-4: #8a8f9b;
-  --sl-color-gray-5: #b9b4aa;
-  --sl-color-gray-6: #e9e6e0;
-  --sl-color-gray-7: #f4f2ee;
+  --sl-color-accent-high: #004182;
+  --sl-color-white: #191919;
+  --sl-color-gray-1: #191919;
+  --sl-color-gray-2: #555555;
+  --sl-color-gray-3: #666666;
+  --sl-color-gray-4: #999999;
+  --sl-color-gray-5: #e0dcd7;
+  --sl-color-gray-6: #eae6e1;
+  --sl-color-gray-7: #f8f7f4;
   --sl-color-black: #ffffff;
+
+  --sl-color-bg: #ffffff;
+  --sl-color-bg-nav: #ffffff;
+  --sl-color-bg-sidebar: #ffffff;
+  --sl-color-hairline: #eae6e1;
+  --sl-color-hairline-light: #e0dcd7;
+  --sl-color-hairline-shade: #e0dcd7;
+
+  --pd-surface: #f8f7f4;
+  --pd-tint-blue: #f0f7ff;
+  --pd-line-blue: #cfe3f8;
+  --pd-tint-green: #eef8f2;
+  --pd-line-green: #c7e6d4;
+  --pd-tint-amber: #fef6ee;
+  --pd-line-amber: #f6d6bd;
+  --pd-tint-red: #fdf0f0;
+  --pd-line-red: #f3c9c9;
+  --pd-text-blue: #0a4f96;
+  --pd-text-green: #04603a;
+  --pd-text-amber: #8f3418;
+  --pd-text-red: #a50d12;
 }
 
-/* Steps read as the main thing on a task page: larger numbers, more air. */
-.sl-markdown-content ol > li {
-  margin-top: 0.6rem;
-}
+/* ── Header ─────────────────────────────────────────────── */
 
-/* UI labels are bold in the copy; give them a faint button-like tint so the
-   eye matches them to the screen. */
-.sl-markdown-content ol strong {
-  color: var(--sl-color-accent-high);
+.header {
+  border-bottom: 1px solid var(--sl-color-hairline);
 }
-
 .site-title {
-  font-weight: 700;
+  gap: 0.6rem;
+  font-size: 1.125rem;
+  font-weight: 600;
   letter-spacing: -0.01em;
+  color: var(--sl-color-white);
+}
+.site-title img {
+  height: 1.75rem;
+}
+site-search button[data-open-modal] {
+  border: 1px solid var(--sl-color-hairline-light);
+  border-radius: 8px;
+  background: transparent;
+  max-width: 16rem;
+  font-size: var(--sl-text-sm);
+}
+site-search button[data-open-modal]:hover {
+  border-color: var(--sl-color-gray-4);
+}
+site-search kbd {
+  border-radius: 4px;
+  font-size: 0.7rem;
+}
+.right-group {
+  gap: 1.25rem;
+}
+
+/* ── Left sidebar ───────────────────────────────────────── */
+
+.sidebar-pane {
+  border-inline-end: none;
+}
+.sidebar-content {
+  padding-top: 1.25rem;
+}
+nav.sidebar ul.top-level > li + li {
+  margin-top: 1.25rem;
+}
+nav.sidebar .group-label .large {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: var(--sl-text-sm);
+  font-weight: 600;
+  color: var(--sl-color-white);
+}
+nav.sidebar summary {
+  padding-block: 0.2rem;
+}
+nav.sidebar summary .caret {
+  color: var(--sl-color-gray-4);
+}
+nav.sidebar ul ul {
+  border-inline-start: none;
+  margin-inline-start: 0;
+  padding-inline-start: 0;
+  margin-top: 0.35rem;
+}
+nav.sidebar ul ul li {
+  border: none;
+  margin: 0;
+}
+nav.sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0.65rem;
+  border-radius: 8px;
+  font-size: var(--sl-text-sm);
+  color: var(--sl-color-gray-2);
+}
+nav.sidebar a:hover {
+  color: var(--sl-color-white);
+  background: var(--pd-surface);
+}
+nav.sidebar a[aria-current='page'],
+nav.sidebar a[aria-current='page']:hover {
+  background: var(--sl-color-accent-low);
+  color: var(--sl-color-accent);
+  font-weight: 500;
+}
+
+/* Icons: pages set `sidebar.attrs.data-icon` in front matter; groups get
+   theirs by position, so keep this list in step with the sidebar order in
+   astro.config.mjs. Lucide-style line icons drawn with currentColor. */
+nav.sidebar a[data-icon]::before,
+nav.sidebar ul.top-level > li > details > summary .large::before {
+  content: '';
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  background: currentColor;
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
+}
+nav.sidebar ul.top-level > li:nth-child(1) summary .large { --icon: var(--i-compass); }
+nav.sidebar ul.top-level > li:nth-child(2) summary .large { --icon: var(--i-phone); }
+nav.sidebar ul.top-level > li:nth-child(3) summary .large { --icon: var(--i-book); }
+nav.sidebar a[data-icon='user'] { --icon: var(--i-user); }
+nav.sidebar a[data-icon='phone-out'] { --icon: var(--i-phone-out); }
+nav.sidebar a[data-icon='list'] { --icon: var(--i-list); }
+
+:root {
+  --i-compass: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><polygon points='16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76'/></svg>");
+  --i-phone: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z'/></svg>");
+  --i-phone-out: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='23 7 23 1 17 1'/><line x1='16' y1='8' x2='23' y2='1'/><path d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z'/></svg>");
+  --i-book: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5z'/><path d='M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5'/></svg>");
+  --i-user: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><circle cx='12' cy='10' r='3'/><path d='M7 20.66V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.66'/></svg>");
+  --i-list: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><line x1='8' y1='6' x2='21' y2='6'/><line x1='8' y1='12' x2='21' y2='12'/><line x1='8' y1='18' x2='21' y2='18'/><circle cx='3.5' cy='6' r='1'/><circle cx='3.5' cy='12' r='1'/><circle cx='3.5' cy='18' r='1'/></svg>");
+}
+
+/* ── Right sidebar: "On this page" ──────────────────────── */
+
+.right-sidebar {
+  border-inline-start: none;
+}
+#starlight__on-this-page {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--sl-text-sm);
+  font-weight: 500;
+  color: var(--sl-color-white);
+}
+#starlight__on-this-page::before {
+  content: '';
+  width: 0.9rem;
+  height: 0.9rem;
+  background: currentColor;
+  -webkit-mask: var(--i-list) center / contain no-repeat;
+  mask: var(--i-list) center / contain no-repeat;
+}
+starlight-toc a {
+  font-size: var(--sl-text-sm);
+  color: var(--sl-color-gray-3);
+}
+starlight-toc a:hover {
+  color: var(--sl-color-white);
+}
+starlight-toc a[aria-current='true'] {
+  color: var(--sl-color-accent);
+}
+
+/* ── Content ────────────────────────────────────────────── */
+
+.content-panel {
+  border-top: none;
+}
+.sl-markdown-content {
+  color: var(--sl-color-gray-2);
+}
+.sl-markdown-content :is(h2, h3, h4) {
+  color: var(--sl-color-white);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+.sl-markdown-content h2 {
+  margin-top: 2.5rem;
+  font-size: 1.5rem;
+}
+.sl-markdown-content strong {
+  color: var(--sl-color-white);
+  font-weight: 600;
+}
+.sl-markdown-content a:not(:where(.not-content *)) {
+  color: var(--sl-color-white);
+  text-decoration-color: var(--sl-color-gray-4);
+  text-underline-offset: 3px;
+}
+.sl-markdown-content a:not(:where(.not-content *)):hover {
+  text-decoration-color: var(--sl-color-accent);
+}
+.sl-markdown-content ol > li + li {
+  margin-top: 0.55rem;
+}
+.sl-markdown-content ol > li::marker {
+  color: var(--sl-color-gray-3);
+  font-weight: 500;
+}
+.sl-markdown-content code:not(:where(.not-content *, pre *)) {
+  padding: 0.1em 0.35em;
+  border: 1px solid var(--sl-color-hairline-light);
+  border-radius: 5px;
+  background: var(--pd-surface);
+  font-size: 0.85em;
+}
+.sl-markdown-content dt {
+  margin-top: 1.25rem;
+}
+.sl-markdown-content dd {
+  margin-inline-start: 0;
+}
+
+/* Tables: hairline rows, no stripes, small muted header. */
+.sl-markdown-content table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--sl-text-sm);
+}
+.sl-markdown-content :is(th, td) {
+  border: none;
+  border-bottom: 1px solid var(--sl-color-hairline);
+  padding: 0.6rem 0.75rem 0.6rem 0;
+  background: transparent;
+}
+.sl-markdown-content th {
+  font-weight: 500;
+  color: var(--sl-color-white);
+}
+.sl-markdown-content tr:nth-child(2n) {
+  background: transparent;
+}
+
+/* Callouts: soft tinted boxes, rounded, no heavy left rule. */
+.starlight-aside {
+  border: 1px solid var(--pd-line-blue);
+  border-radius: 12px;
+  background: var(--pd-tint-blue);
+  padding: 0.85rem 1rem;
+  color: var(--pd-text-blue);
+  font-size: 0.95rem;
+}
+.starlight-aside .starlight-aside__title {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: var(--sl-text-sm);
+  font-weight: 600;
+  color: inherit;
+}
+.starlight-aside .starlight-aside__icon {
+  font-size: 1rem;
+  width: 1rem;
+  height: 1rem;
+}
+.starlight-aside .starlight-aside__content,
+.starlight-aside .starlight-aside__content :is(strong, a) {
+  color: inherit;
+}
+.starlight-aside--tip {
+  border-color: var(--pd-line-green);
+  background: var(--pd-tint-green);
+  color: var(--pd-text-green);
+}
+.starlight-aside--caution {
+  border-color: var(--pd-line-amber);
+  background: var(--pd-tint-amber);
+  color: var(--pd-text-amber);
+}
+.starlight-aside--danger {
+  border-color: var(--pd-line-red);
+  background: var(--pd-tint-red);
+  color: var(--pd-text-red);
+}
+
+/* Code blocks */
+.expressive-code .frame {
+  --ec-brdRad: 12px;
+}
+
+/* Cards on the home page */
+.sl-link-card {
+  border: 1px solid var(--sl-color-hairline-light);
+  border-radius: 12px;
+  background: transparent;
+  box-shadow: none;
+}
+.sl-link-card:hover {
+  border-color: var(--sl-color-accent);
+  background: var(--pd-surface);
+}
+.sl-link-card .title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+.sl-link-card .description {
+  color: var(--sl-color-gray-3);
+  font-size: var(--sl-text-sm);
+}
+
+/* Home hero */
+.hero h1 {
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--sl-color-white);
+}
+.hero .tagline {
+  color: var(--sl-color-gray-3);
+}
+
+/* Footer feedback and pagination */
+.pagination-links a {
+  border-radius: 12px;
+  border-color: var(--sl-color-hairline-light);
+  box-shadow: none;
+}
+.pagination-links a:hover {
+  border-color: var(--sl-color-accent);
 }
