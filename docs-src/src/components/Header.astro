@@ -1,0 +1,90 @@
+---
+// OpenRouter-style header: title on the left, search and links on the right,
+// then a row of tabs (one per top-level sidebar group, see src/routeData.ts).
+import Search from 'virtual:starlight/components/Search';
+import SiteTitle from 'virtual:starlight/components/SiteTitle';
+import SocialIcons from 'virtual:starlight/components/SocialIcons';
+import ThemeSelect from 'virtual:starlight/components/ThemeSelect';
+import { groupIcons } from '../navigation';
+
+const tabs = Astro.locals.tabs ?? [];
+---
+
+<div class="pd-header">
+  <div class="pd-header-bar">
+    <div class="pd-title sl-flex"><SiteTitle /></div>
+    <div class="pd-header-right">
+      <div class="sl-flex print:hidden"><Search /></div>
+      <div class="sl-hidden md:sl-flex print:hidden pd-header-actions">
+        <SocialIcons />
+        <ThemeSelect />
+      </div>
+    </div>
+  </div>
+  {
+    tabs.length > 1 && (
+      <nav class="pd-tabs print:hidden" aria-label="Sections">
+        {tabs.map((tab) => (
+          <a href={tab.href} aria-current={tab.isCurrent ? 'page' : undefined}>
+            {groupIcons[tab.label] && <span class="pd-icon" data-icon={groupIcons[tab.label]} />}
+            {tab.label}
+          </a>
+        ))}
+      </nav>
+    )
+  }
+</div>
+
+<style>
+  .pd-header {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .pd-header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sl-nav-gap);
+    height: var(--pd-bar-height);
+    flex-shrink: 0;
+  }
+  .pd-title {
+    overflow: clip;
+    min-width: 0;
+    padding: 0.25rem;
+    margin: -0.25rem;
+  }
+  .pd-header-right,
+  .pd-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  .pd-tabs {
+    display: flex;
+    gap: 1.75rem;
+    height: var(--pd-tabs-height);
+    border-top: 1px solid var(--sl-color-hairline);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .pd-tabs a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 2px solid transparent;
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-2);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .pd-tabs a:hover {
+    color: var(--sl-color-white);
+  }
+  .pd-tabs a[aria-current='page'] {
+    border-bottom-color: var(--sl-color-accent);
+    color: var(--sl-color-white);
+    font-weight: 500;
+  }
+</style>

@@ -1,2 +1,4 @@
 User-agent: *
 Disallow: /commission.html
+
+Sitemap: https://paladinrecruiter.com/docs/sitemap-index.xml

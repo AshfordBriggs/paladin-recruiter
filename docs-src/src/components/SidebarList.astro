@@ -1,0 +1,55 @@
+---
+// One level of the sidebar. At the top level, groups render as fixed headings
+// (OpenRouter's "Models & Routing"); deeper groups collapse.
+import type { StarlightRouteData } from '@astrojs/starlight/route-data';
+import { groupIcons } from '../navigation';
+
+type Entry = StarlightRouteData['sidebar'][number];
+interface Props {
+  entries: Entry[];
+  depth?: number;
+}
+
+const { entries, depth = 0 } = Astro.props;
+const hasCurrent = (e: Entry): boolean =>
+  e.type === 'link' ? e.isCurrent : e.entries.some(hasCurrent);
+---
+
+<ul class="pd-nav">
+  {
+    entries.map((entry) =>
+      entry.type === 'link' ? (
+        <li>
+          <a
+            href={entry.href}
+            class="pd-nav-link"
+            aria-current={entry.isCurrent ? 'page' : undefined}
+            {...entry.attrs}
+          >
+            {entry.attrs['data-icon'] && <span class="pd-icon" data-icon={entry.attrs['data-icon']} />}
+            <span>{entry.label}</span>
+          </a>
+        </li>
+      ) : depth === 0 ? (
+        <li class="pd-nav-group">
+          <p class="pd-nav-heading">
+            {groupIcons[entry.label] && <span class="pd-icon" data-icon={groupIcons[entry.label]} />}
+            {entry.label}
+          </p>
+          <Astro.self entries={entry.entries} depth={depth + 1} />
+        </li>
+      ) : (
+        <li>
+          <details open={hasCurrent(entry) || !entry.collapsed}>
+            <summary class="pd-nav-link">
+              {groupIcons[entry.label] && <span class="pd-icon" data-icon={groupIcons[entry.label]} />}
+              <span>{entry.label}</span>
+              <span class="pd-icon pd-caret" data-icon="chevron" />
+            </summary>
+            <Astro.self entries={entry.entries} depth={depth + 1} />
+          </details>
+        </li>
+      ),
+    )
+  }
+</ul>

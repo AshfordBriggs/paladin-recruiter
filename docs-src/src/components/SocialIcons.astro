@@ -1,0 +1,36 @@
+---
+// Header links in place of social icons: back to the product site, and the
+// Dialer install page as the one highlighted action (OpenRouter's "Home" pill).
+---
+
+<nav class="header-links" aria-label="Paladin">
+  <a href="/">paladinrecruiter.com</a>
+  <a href="/dialer" class="header-cta">Get the Dialer</a>
+</nav>
+
+<style>
+  .header-links {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    font-size: var(--sl-text-sm);
+  }
+  .header-links a {
+    color: var(--sl-color-gray-2);
+    text-decoration: none;
+  }
+  .header-links a:hover {
+    color: var(--sl-color-white);
+  }
+  .header-links .header-cta {
+    padding: 0.35rem 0.85rem;
+    border-radius: 8px;
+    background: var(--sl-color-accent);
+    color: var(--sl-color-black);
+    font-weight: 500;
+  }
+  .header-links .header-cta:hover {
+    color: var(--sl-color-black);
+    filter: brightness(1.08);
+  }
+</style>
