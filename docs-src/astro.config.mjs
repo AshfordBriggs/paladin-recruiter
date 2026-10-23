@@ -23,6 +23,13 @@ export default defineConfig({
       },
       routeMiddleware: './src/routeData.ts',
       head: [
+        // Link previews (iMessage, Slack, LinkedIn) use the site's share card;
+        // without it they fall back to the favicon, blue on blue.
+        { tag: 'meta', attrs: { property: 'og:image', content: 'https://paladinrecruiter.com/assets/paladin-logo-horizontal.png' } },
+        { tag: 'meta', attrs: { property: 'og:image:width', content: '1200' } },
+        { tag: 'meta', attrs: { property: 'og:image:height', content: '630' } },
+        { tag: 'meta', attrs: { property: 'og:image:alt', content: 'Paladin, Realtime Advisor' } },
+        { tag: 'meta', attrs: { name: 'twitter:image', content: 'https://paladinrecruiter.com/assets/paladin-logo-horizontal.png' } },
         { tag: 'link', attrs: { rel: 'preconnect', href: 'https://fonts.googleapis.com' } },
         { tag: 'link', attrs: { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true } },
         {
