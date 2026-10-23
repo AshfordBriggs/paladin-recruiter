@@ -19,7 +19,7 @@ Paladin number.
 - Your account needs a Paladin number. Open your **Profile** in Paladin: if
   it says **Not assigned**, ask your Paladin admin to assign one.
 - The phone you're setting up must be one of your **Phone Numbers** in your
-  **Profile**. Paladin only accepts Dialer calls from those numbers.
+  **Profile**.
 :::
 
 1. Open **Paladin Dialer**. On the **Calls** tab, tap **Connect now**. (Or
@@ -51,8 +51,7 @@ itself runs in your phone's own Phone app.
 
 ## What happens next
 
-You don't need a PIN. The app gets one from Paladin when you connect and
-keeps it on the phone. To check which account the phone is on, tap the gear.
+To check which account the phone is on, tap the gear.
 It shows **Connected**, your name, your Paladin number, and the dashboard
 address.
 
@@ -62,9 +61,9 @@ address.
   Check that you can sign in with them in your browser, then try again.
 - **"Your account has no phone number assigned."** Ask your Paladin admin to
   assign you a Paladin number, then tap **Connect** again.
-- **"This account can’t get a PIN automatically."** A **DISA PIN** field
-  appears. Ask your Paladin admin for your PIN, enter it (4 to 8 digits), and
-  tap **Connect**.
+- **"This account can’t get a PIN automatically."** A PIN field
+  appears. Ask your Paladin admin for your PIN, enter it, and tap
+  **Connect**.
 - **"Enter your dashboard address, email, and password."** One of the fields
   is empty.
 

@@ -26,27 +26,14 @@ The app must be [connected to your account](../pair-the-dialer/).
    - **Keypad**: enter the number, then tap **Call via Paladin**.
 2. Your phone's Phone app takes over. On iPhone, confirm the call when iPhone
    asks. On Android the call starts on its own.
-3. Wait a few seconds. The app has your phone enter the number for Paladin,
-   so you may hear tones before the call rings through.
+3. Wait a few seconds while Paladin connects the call. You may hear tones
+   before it rings through.
 4. Talk as usual. Hang up in the Phone app when you're done.
 
 :::caution
 Calls are transcribed, and Paladin doesn't announce that on the call yet.
 Tell the person you're calling.
 :::
-
-## Choose which number they see
-
-The **Keypad** tab has a switch above the call button:
-
-- **Paladin number**: they see your Paladin number. This is the default.
-- **My number**: they see this phone's own number. The call still goes
-  through Paladin and is still transcribed. The button changes to
-  **Call as my number**.
-
-Your choice sticks on this phone and applies to calls from **Contacts** and
-**Calls** too. Use **My number** only for people who know your cell; some
-carriers mark these calls as spam.
 
 ## What happens next
 
@@ -64,9 +51,9 @@ belongs to a candidate in Paladin, the call is filed on their record.
   number has 10 digits, or 11 starting with 1.
 - **"No number on file for this contact."** Tap the info icon next to the
   contact to check their numbers, or add one to the candidate in Paladin.
-- **The call doesn't reach the person.** Paladin only accepts Dialer calls
-  from the phones under **Phone Numbers** in your **Profile**. Add this
-  phone's number there, then call again.
+- **The call doesn't reach the person.** This phone needs to be one of the
+  phones under **Phone Numbers** in your **Profile**. Add its number there,
+  then call again.
 - **The call isn't transcribed.** It was placed from your phone's own dialer
   or Contacts app instead of the Paladin Dialer. Hang up and call again from
   the Paladin Dialer.

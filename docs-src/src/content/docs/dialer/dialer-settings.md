@@ -45,10 +45,6 @@ Settings shows **Connected**, your name, your Paladin number, and **Connected
 to** with your dashboard address. To change the dashboard address or your
 login, disconnect and connect again.
 
-The **Paladin number** / **My number** caller ID switch is on the **Keypad**
-tab, not in Settings. See
-[Place a call from your phone](../place-a-call-from-your-phone/#choose-which-number-they-see).
-
 ## If something goes wrong
 
 - **"Sign-in expired."** You changed your dashboard password. Disconnect the
