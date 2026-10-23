@@ -22,16 +22,16 @@ account, or the call was placed from outside the app.
 - **"Your account has no phone number assigned."** Ask your Paladin admin to
   assign you a Paladin number.
 - **"This account can’t get a PIN automatically."** Ask your Paladin admin
-  for your DISA PIN, enter it, and tap **Connect**.
+  for your PIN, enter it, and tap **Connect**.
 - **"Sign-in expired."** (a red bar on **Calls** or **Contacts**). Your
   dashboard password changed. Tap the gear, tap **Disconnect this device**,
   and connect again with the new password.
 
 ## Calls
 
-- **The call doesn't reach the person.** Paladin only accepts Dialer calls
-  from the phones under **Phone Numbers** in your **Profile** in the
-  dashboard. Add this phone's number there.
+- **The call doesn't reach the person.** This phone needs to be one of the
+  phones under **Phone Numbers** in your **Profile** in the dashboard. Add
+  its number there.
 - **The call isn't in Paladin, or isn't transcribed.** It was placed from
   your phone's own dialer, Contacts app or call log. Always start work calls
   from the Paladin Dialer.
@@ -40,8 +40,8 @@ account, or the call was placed from outside the app.
 - **"Could not start the call."** Your phone didn't accept the call from the
   app. Try again. On Android, check that Paladin Dialer is allowed to make
   phone calls in your phone's settings.
-- **On Android, the Phone app opens with a long number filled in, but
-  doesn't call.** You didn't allow Paladin Dialer to make phone calls. Tap
+- **On Android, the Phone app opens with the call ready, but doesn't
+  call.** You didn't allow Paladin Dialer to make phone calls. Tap
   call in the Phone app, or allow the permission in your phone's settings.
 - **The Call in progress bar doesn't appear.** It takes about 15 seconds.
   Switch away from the app and back. See
@@ -66,11 +66,6 @@ account, or the call was placed from outside the app.
   that the email you gave us is the one your Apple ID uses.
 - **Android says the app isn't installed.** Uninstall the older Paladin
   Dialer from before September 2026, then install again.
-
-:::note
-Your phone's own call log shows Dialer calls as your Paladin number followed
-by extra digits, including your Dialer PIN. Keep your phone locked.
-:::
 
 If none of this helps, use the feedback link at the bottom of this page.
 
