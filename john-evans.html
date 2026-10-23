@@ -157,13 +157,13 @@
                 <div class="bio-body">
                     <div class="bio-actions">
                         <a class="btn-primary span2" href="john-evans.vcf" download="John-Evans.vcf">Save contact</a>
-                        <a class="btn-outline" href="tel:+19046120239">Call</a>
-                        <a class="btn-outline" href="mailto:jevans@ashfordbriggs.com">Email</a>
+                        <a class="btn-outline" data-contact="tel" href="john-evans.vcf">Call</a>
+                        <a class="btn-outline" data-contact="mail" href="john-evans.vcf">Email</a>
                     </div>
 
                     <ul class="bio-contact">
-                        <li><span class="k">Phone</span><a class="v" href="tel:+19046120239">904-612-0239</a></li>
-                        <li><span class="k">Email</span><a class="v" href="mailto:jevans@ashfordbriggs.com">jevans@ashfordbriggs.com</a></li>
+                        <li><span class="k">Phone</span><a class="v" data-contact="tel" data-show href="john-evans.vcf">Save contact</a></li>
+                        <li><span class="k">Email</span><a class="v" data-contact="mail" data-show href="john-evans.vcf">Save contact</a></li>
                         <li><span class="k">Company</span><a class="v" href="https://www.ashfordbriggs.com">Ashford &amp; Briggs LLC</a></li>
                         <li><span class="k">Product</span><a class="v" href="/">paladinrecruiter.com</a></li>
                         <li><span class="k">LinkedIn</span><a class="v" href="https://www.linkedin.com/in/jevans444">linkedin.com/in/jevans444</a></li>
@@ -205,6 +205,24 @@
         v.addEventListener('volumechange', function () { if (!v.muted) wrap.classList.add('sound-on'); });
         var p = v.play(); if (p && p.catch) p.catch(function () { btn.textContent = '\u25B6 Tap to play'; });
     })();
+    </script>
+    <script>
+        // Phone and email are put together here rather than written in the HTML,
+        // so scrapers reading the page source don't find them.
+        (function () {
+            var tel = ['904', '612', '0239'];
+            var mail = ['jevans', 'ashfordbriggs.com'];
+            var values = {
+                tel: { href: 'tel:+1' + tel.join(''), text: tel.join('-') },
+                mail: { href: 'mailto:' + mail.join('@'), text: mail.join('@') }
+            };
+            document.querySelectorAll('[data-contact]').forEach(function (a) {
+                var v = values[a.getAttribute('data-contact')];
+                a.href = v.href;
+                a.removeAttribute('download');
+                if (a.hasAttribute('data-show')) a.textContent = v.text;
+            });
+        })();
     </script>
     <script src="script.js"></script>
 </body>
